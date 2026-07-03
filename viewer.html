@@ -90,6 +90,7 @@ async function toggleFullscreen() {
 }
 
 btnFullscreen.addEventListener("click", toggleFullscreen);
+btnFullscreen.addEventListener("pointerdown", toggleFullscreen);
 
 document.addEventListener("fullscreenchange", () => {
   btnFullscreen.textContent = document.fullscreenElement
