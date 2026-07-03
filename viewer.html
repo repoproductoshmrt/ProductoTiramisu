@@ -75,9 +75,12 @@
   <script src="vendor/pdfjs/pdf.min.js"></script>
 
   <script>
-    const btnFullscreen = document.getElementById("btnFullscreen");
 
-async function toggleFullscreen() {
+const btnFullscreen = document.getElementById("btnFullscreen");
+
+async function toggleFullscreen(e) {
+  if (e) e.preventDefault();
+
   try {
     if (!document.fullscreenElement) {
       await document.documentElement.requestFullscreen();
@@ -97,6 +100,7 @@ document.addEventListener("fullscreenchange", () => {
     ? "✕ Salir de pantalla completa"
     : "⛶ Pantalla completa";
 });
+    
     pdfjsLib.GlobalWorkerOptions.workerSrc = "vendor/pdfjs/pdf.worker.min.js";
 
     const q=new URLSearchParams(location.search);
