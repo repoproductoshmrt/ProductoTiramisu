@@ -126,7 +126,9 @@ document.addEventListener("fullscreenchange", () => {
     const io=new IntersectionObserver(onIO,{root:null,rootMargin:"1200px 0px",threshold:.01});
 
     function containerWidth(){
-  return window.innerWidth || wrap.clientWidth || document.documentElement.clientWidth;
+  return document.fullscreenElement
+    ? window.innerWidth
+    : (wrap.clientWidth || document.documentElement.clientWidth);
 }
 
     function pageDiv(n){
