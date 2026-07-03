@@ -141,9 +141,7 @@ document.addEventListener("fullscreenchange", () => {
       st.rendering=true;
       try{
         const page=await pdf.getPage(st.num);
-        const w = document.fullscreenElement
-  ? window.innerWidth
-  : containerWidth();
+        const w = containerWidth();
         const v0=page.getViewport({scale:1});
         const s =(w/v0.width)*currentScale;
         const v =page.getViewport({scale:s});
