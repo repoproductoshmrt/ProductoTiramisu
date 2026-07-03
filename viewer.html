@@ -75,11 +75,28 @@
   <script src="vendor/pdfjs/pdf.min.js"></script>
 
   <script>
-    const btnFullscreen=document.getElementById("btnFullscreen");
-async function toggleFullscreen(){const target=document.getElementById("viewport");if(!document.fullscreenElement){if(target.requestFullscreen) await target.requestFullscreen();}else if(document.exitFullscreen){await document.exitFullscreen();}}
-btnFullscreen.addEventListener("click",toggleFullscreen);
-document.addEventListener("fullscreenchange",()=>{btnFullscreen.textContent=document.fullscreenElement?"✕ Salir de pantalla completa":"⛶ Pantalla completa";});
-pdfjsLib.GlobalWorkerOptions.workerSrc = "vendor/pdfjs/pdf.worker.min.js";
+    const btnFullscreen = document.getElementById("btnFullscreen");
+
+async function toggleFullscreen() {
+  try {
+    if (!document.fullscreenElement) {
+      await document.documentElement.requestFullscreen();
+    } else {
+      await document.exitFullscreen();
+    }
+  } catch (err) {
+    console.error("Fullscreen error:", err);
+  }
+}
+
+btnFullscreen.addEventListener("click", toggleFullscreen);
+
+document.addEventListener("fullscreenchange", () => {
+  btnFullscreen.textContent = document.fullscreenElement
+    ? "✕ Salir de pantalla completa"
+    : "⛶ Pantalla completa";
+});
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "vendor/pdfjs/pdf.worker.min.js";
 
     const q=new URLSearchParams(location.search);
     const fileParam=q.get("file");
