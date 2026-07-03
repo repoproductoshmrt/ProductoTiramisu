@@ -77,8 +77,10 @@
   <script>
 
 const btnFullscreen = document.getElementById("btnFullscreen");
+    console.log("fullscreen button loaded");
 
 async function toggleFullscreen(e) {
+  console.log("toggle fullscreen");
   if (e) e.preventDefault();
 
   try {
