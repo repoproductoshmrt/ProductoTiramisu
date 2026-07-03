@@ -101,6 +101,10 @@ document.addEventListener("fullscreenchange", () => {
   btnFullscreen.textContent = document.fullscreenElement
     ? "✕ Salir de pantalla completa"
     : "⛶ Pantalla completa";
+
+  setTimeout(() => {
+    rerenderAll();
+  }, 150);
 });
     
     pdfjsLib.GlobalWorkerOptions.workerSrc = "vendor/pdfjs/pdf.worker.min.js";
